@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/categories_screen.dart';
+import 'package:meals_app/screens/categories_screen.dart';
 
 class HomePage extends StatefulWidget {
   @override
