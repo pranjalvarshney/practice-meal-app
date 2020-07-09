@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/categories_screen.dart';
+import 'package:meals_app/screens/tab_srceen.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,10 +11,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Yum Meals"),
-      ),
-      body: CategoriesScreen(),
+      appBar: null,
+      body: TabScreen(),
     );
   }
 }
