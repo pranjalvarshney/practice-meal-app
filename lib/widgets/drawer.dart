@@ -40,8 +40,12 @@ class MainDrawer extends StatelessWidget {
               elevation: 2,
               margin: const EdgeInsets.all(0),
               child: Container(
-                height: 120,
+                height: 200,
                 width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Colors.amber, Colors.amber.withOpacity(0.5)]),
+                ),
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                 alignment: Alignment.centerLeft,

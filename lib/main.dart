@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favMeals = [];
 
   void _setFilter(Map<String, bool> data) {
     setState(() {
@@ -44,20 +45,40 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _favMealFunction(String mealId) {
+    final index = _favMeals.indexWhere((meal) => meal.id == mealId);
+
+    if (index >= 0) {
+      setState(() {
+        _favMeals.removeAt(index);
+      });
+    } else {
+      setState(() {
+        _favMeals
+            .add(DUMMY_MEALS.firstWhere((element) => element.id == mealId));
+      });
+    }
+  }
+
+  bool _isMealFav(String mealId) {
+    return _favMeals.any((meal) => meal.id == mealId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: TabScreen(),
+      home: TabScreen(_favMeals),
       theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
       routes: {
         CategoryMealsScreen.routename: (context) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetail.routeName: (context) => MealDetail(),
+        MealDetail.routeName: (context) =>
+            MealDetail(_favMealFunction, _isMealFav),
         FilterScreen.routeName: (context) => FilterScreen(_filters, _setFilter),
       },
       onUnknownRoute: (settings) {
-        return MaterialPageRoute(builder: (context) => TabScreen());
+        return MaterialPageRoute(builder: (context) => TabScreen(_favMeals));
       },
     );
   }
